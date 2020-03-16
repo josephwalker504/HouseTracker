@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>HouseTracker</title>
+</head>
+
+<body>
+    <h1>Wholesale Property</h1>
+
+    {% if house.id is not None %}
+        <form action="{% url 'trackerapp:house' house.id %}" method="post">
+    {% else %}
+        <form action="{% url 'trackerapp:houses' %}" method="post">
+    {% endif %}
+        {% csrf_token %}
+        <fieldset>
+            <label for="address">Address: </label>
+            <input id="address" type="text" name="address" value="{{ house.address }}">
+        </fieldset>
+        <fieldset>
+            <label for="askingPrice">Asking Price: </label>
+            <input id="askingPrice" type="number" name="askingPrice" value="{{ house.askingPrice }}">
+        </fieldset>
+        <fieldset>
+            <label for="sellingPrice">Selling Price: </label>
+            <input id="sellingPrice" type="number" name="sellingPrice" value="{{ house.sellingPrice }}">
+        </fieldset>
+        <fieldset>
+            <label for="notes">Notes: </label>
+            <input id="notes" type="text" name="notes" value="{{ house.notes }}">
+        </fieldset>
+        <fieldset>
+            <label for="neighborhood">Neighborhood: </label>
+            <select id="neighborhood" type="text" name="neighborhood">
+                {% for neighborhood in allNieghborhoods %}
+                <option {% if neighborhood.id == house.neighborhood_id %}selected{% endif %} value="{{ neighborhood.id }}">
+                    {{ neighborhood.title }}</option>
+                {% endfor %}
+            </select>
+        </fieldset>
+
+        {% if house.id is not None %}
+            <input type="hidden" name="actual_method" value="PUT">
+            <input type="submit" value="Update" />
+        {% else %}
+            <input type="submit" value="Create" />
+        {% endif %}
+
+    </form>
+</body>
+
+</html>

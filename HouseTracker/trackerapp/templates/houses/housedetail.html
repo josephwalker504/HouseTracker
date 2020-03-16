@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>HouseTracker</title>
+</head>
+
+<body>
+
+    <section id="housedetails">
+        <h1>{{ house.address }}</h1>
+        <h2>Purchased for {{ house.askingPrice }} Selling for {{ house.sellingPrice}} </h2>
+
+        <h2>Note {{ house.notes }}</h2>
+    </section>
+
+    <section id="houseActions" style="display:flex;">
+        <form action="{% url 'trackerapp:house' house.id %}" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="actual_method" value="DELETE">
+            <button>Delete</button>
+        </form>
+
+        <form action="{% url 'trackerapp:house_edit_form' house.id %}" method="GET">
+            {% csrf_token %}
+            <button>Edit</button>
+        </form>
+    </section>
+
+</body>
+
+</html>

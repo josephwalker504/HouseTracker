@@ -8,7 +8,7 @@ from .investor import Investor
 class House (models.Model):
     userId = models.OneToOneField(User, on_delete=models.CASCADE)
     investorId = models.ForeignKey(Investor, on_delete=models.CASCADE, null=True)
-    image = models.ImageField(_(""), upload_to=None, height_field=None, width_field=None, max_length=None, null=True)
+    image = models.CharField((""), max_length=50, null=True)
     address = models.CharField(max_length=50)
     askingPrice = models.IntegerField(max_length=None)
     sellingPrice = models.IntegerField(max_length=None)

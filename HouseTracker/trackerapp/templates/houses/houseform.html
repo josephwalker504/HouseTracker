@@ -10,9 +10,9 @@
     <h1>Wholesale Property</h1>
 
     {% if house.id is not None %}
-        <form action="{% url 'trackerapp:house' house.id %}" method="post">
+        <form action="{% url 'trackerapp:house_detail' house.id %}" method="post">
     {% else %}
-        <form action="{% url 'trackerapp:houses' %}" method="post">
+        <form action="{% url 'trackerapp:house_form' %}" method="post">
     {% endif %}
         {% csrf_token %}
         <fieldset>

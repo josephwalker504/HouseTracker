@@ -6,15 +6,15 @@ from ..connection import Connection
 from trackerapp.models import House
 
 
-def getHouse(houseid):
+def getHouse(house_id):
 
-     return House.objects.get(pk=houseid)
+     return House.objects.get(pk=house_id)
 
 
-def housedetails(request, houseid):
+def house_detail(request, house_id):
     if request.method == 'GET':
-        house = getHouse(houseid)
-        template_name = 'houses/housedetail.html'
+        house = getHouse(house_id)
+        template_name = 'houses/house_detail.html'
         return render(request, template_name, {'house': house})
 
     elif request.method == 'POST':
@@ -26,7 +26,7 @@ def housedetails(request, houseid):
             and form_data["actual_method"] == "PUT"
         ):
          # retrieve it first
-            houseToUpdate = House.objects.get(pk=houseid)
+            houseToUpdate = House.objects.get(pk=house_id)
         # Reassign a property's value
             houseToUpdate.address = form_data['address']
             houseToUpdate.image = form_data['image']

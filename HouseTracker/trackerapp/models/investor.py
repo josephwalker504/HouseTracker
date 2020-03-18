@@ -24,4 +24,4 @@ class Investor (models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse("investor_detail", kwargs={"pk": self.pk})
+        return reverse("investordetail", kwargs={"pk": self.pk})

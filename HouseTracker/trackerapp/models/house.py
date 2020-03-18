@@ -17,11 +17,11 @@ class House (models.Model):
     
 
     class Meta:
-        verbose_name = ("House")
-        verbose_name_plural = ("Houses")
+        verbose_name = ("house")
+        verbose_name_plural = ("houses")
 
     def __str__(self):
         return self.name
 
     def get_absolute_url(self):
-        return reverse("House_detail", kwargs={"pk": self.pk})
+        return reverse("housedetail", kwargs={"pk": self.pk})

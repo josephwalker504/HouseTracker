@@ -5,14 +5,14 @@
     <title>HouseTracker</title>
   </head>
   <body>
-    <a href="{% url 'trackerapp:houseform' %}">Add Property</a>
+    {% comment %} <a href="{% url 'trackerapp:houselist' %}">Add Property</a> {% endcomment %}
 
-    <h1>houses</h1>
+    <h1>Houses</h1>
 
     <ol>
     {% for house in allHouses %}
         <li>
-            <a href="{% url 'trackerapp:house' house.id %}"> {{ house.address }} </a>
+            <a href="{% url 'trackerapp:houses' house.id %}"> {{ house.address }} </a>
     Purchase Price: {{house.askingPrice}} Selling Price {{house.sellingPrice}}
         </li>
     {% endfor %}

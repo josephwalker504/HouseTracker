@@ -16,7 +16,7 @@
     </section>
 
     <section id="houseActions" style="display:flex;">
-        <form action="{% url 'trackerapp:house' house.id %}" method="POST">
+        <form action="{% url 'trackerapp:house_detail' house.id %}" method="POST">
             {% csrf_token %}
             <input type="hidden" name="actual_method" value="DELETE">
             <button>Delete</button>

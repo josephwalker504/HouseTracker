@@ -6,7 +6,7 @@ from trackerapp.models import model_factory
 from ..connection import Connection
 
 
-def getNeighborhoods():
+def get_neighborhoods():
     with sqlite3.connect(Connection.db_path) as conn:
         conn.row_factory = model_factory(Neighborhood)
         db_cursor = conn.cursor()
@@ -14,16 +14,16 @@ def getNeighborhoods():
         db_cursor.execute("""
         select
             n.id,
-            n.name,
-        from trackerapp_neighbor 
+            n.name
+        from trackerapp_neighborhood n 
         """)
 
         return db_cursor.fetchall()
 
 
-def houseform(request):
+def house_form(request):
     if request.method == 'GET':
-        neighborhoods = getNeighborhoods()
+        neighborhoods = get_neighborhoods()
         template = 'houses/houseform.html'
         context = {
             'allNeighborhoods': neighborhoods

@@ -1,0 +1,24 @@
+
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>House Tracker</title>
+  </head>
+  <body>
+    <h1>Add Neighborhood</h1>
+
+
+    <form action="{% url 'trackerapp:neighborhood_form' %}" method="post">
+      {% csrf_token %}
+      <fieldset>
+          <label for="name">Name: </label>
+          <input id="name" type="text" name="name" value="{{ neighborhood.name }}">
+      </fieldset>
+      <input type="submit" name="actual_method" value="List It"/>
+    </form>
+  </body>
+</html>
+{% endblock content %}

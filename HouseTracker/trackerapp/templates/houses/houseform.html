@@ -10,7 +10,7 @@
     <h1>Wholesale Property</h1>
 
     {% if house.id is not None %}
-        <form action="{% url 'trackerapp:house_detail' house.id %}" method="post">
+        <form action="{% url 'trackerapp:house_edit_form' house.id %}" method="post">
     {% else %}
         <form action="{% url 'trackerapp:house_form' %}" method="post">
     {% endif %}
@@ -36,7 +36,7 @@
             <select id="neighborhood" type="text" name="neighborhood">
                 {% for neighborhood in allNieghborhoods %}
                 <option {% if neighborhood.id == house.neighborhood_id %}selected{% endif %} value="{{ neighborhood.id }}">
-                    {{ neighborhood.title }}</option>
+                    {{ neighborhood.name }}</option>
                 {% endfor %}
             </select>
         </fieldset>

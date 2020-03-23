@@ -10,12 +10,8 @@ from ..connection import Connection
 def neighborhood_list(request):
     if request.method == 'GET':
         neighborhoods = Neighborhood.objects.all()
-        
-        name = request.GET.get('name', None)
-        if name is not None:
-            neighborhoods = neighborhoods.filter(name__contains=name)
-            template = 'neighborhoods/list.html'
-            context = {
+        template = 'neighborhoods/list.html'
+        context = {
             'neighborhoods': neighborhoods
         }
         return render(request, template, context)

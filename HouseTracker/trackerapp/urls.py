@@ -11,7 +11,8 @@ urlpatterns = [
     path('houseform', house_form, name='house_form'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('logout/', logoutUser, name='logout'),
-    path('houses/<int:house_id>/', house_edit_form, name='house_edit_form'),
+    path('houses/<int:house_id>/form', house_edit_form, name='house_edit_form'),
     path('neighborhoodform', neighborhood_form, name='neighborhood_form'),
+    path('neighborhoods/', neighborhood_list, name='neighborhoods'),
 
 ]

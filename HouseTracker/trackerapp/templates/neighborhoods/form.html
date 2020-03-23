@@ -15,9 +15,9 @@
       {% csrf_token %}
       <fieldset>
           <label for="name">Name: </label>
-          <input id="name" type="text" name="name">
+          <input id="name" type="text" name="name" value="{{ neighborhood.name }}">
       </fieldset>
-      <input type="submit" value="Add" />
+      <input type="submit" name="actual_method" value="List It"/>
     </form>
   </body>
 </html>

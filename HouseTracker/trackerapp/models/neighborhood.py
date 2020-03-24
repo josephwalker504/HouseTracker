@@ -4,7 +4,7 @@ from django.urls import reverse
 
 class Neighborhood (models.Model):
     name = models.CharField(max_length=50)
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     
 
     class Meta:
@@ -15,4 +15,4 @@ class Neighborhood (models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse("neighborhooddetail", kwargs={"pk": self.pk})
+        return reverse("neighborhood_detail", kwargs={"pk": self.pk})

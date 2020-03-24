@@ -1,3 +1,4 @@
+{% comment %} {% extends 'shared/base.html' %} {% endcomment %}
 {% load static  %}
 {% block content %}
 <!DOCTYPE html>
@@ -8,11 +9,12 @@
   </head>
   <body>
     <h1>Neighborhoods</h1>
+    <a href="{% url 'trackerapp:neighborhood_form' %}">Add Neighborhood</a>
 
     <ol>
     {% for neighborhood in neighborhoods %}
         <li>
-          <a href="{% url 'trackerapp:neighborhood' neighborhood.id %}">
+          <a href="{% url 'trackerapp:neighborhood_detail' neighborhood.id %}">
             {{neighborhood.name}}
           </a>
         </li>

@@ -1,0 +1,26 @@
+{% comment %} {% extends 'shared/base.html' %} {% endcomment %}
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>House Tracker</title>
+  </head>
+  <body>
+    <h1>Neighborhoods</h1>
+
+          <h3>{{neighborhood.name}}</h3>
+    
+  
+          <a href="{% url 'trackerapp:neighborhood_detail' neighborhood.id %}">
+      <section style="display:flex;">
+        <form action="{% url 'trackerapp:neighborhood_detail' neighborhood.id %}" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="actual_method" value="DELETE">
+            <button>Delete</button>
+        </form>
+        <form action="{% url 'trackerapp:neighborhood_edit_form' neighborhood.id %}" method="GET">
+            {% csrf_token %}
+            <button>Edit</button>
+        </form>
+      </section>
+  </body>
+</html>

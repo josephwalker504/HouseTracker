@@ -1,11 +1,12 @@
 import sqlite3
-from django.shortcuts import render
+from django.shortcuts import render, redirect, reverse
 from django.contrib.auth.decorators import login_required
 from trackerapp.models import House
 from trackerapp.models import Neighborhood
 from trackerapp.models import model_factory
 from ..connection import Connection
 from .housedetails import getHouse
+
 
 
 def get_neighborhoods():
@@ -34,16 +35,16 @@ def house_form(request):
         return render(request, template, context)
 
 
-def house_edit_form(request, house_id):
 
+def house_edit_form(request, house_id):
     if request.method == 'GET':
         house = getHouse(house_id)
         neighborhoods = get_neighborhoods()
-
         template = 'houses/houseform.html'
         context = {
             'house': house,
             'all_neighborhood': neighborhoods
         }
-
         return render(request, template, context)
+        
+    # else: return render(request, 'houses/houselist.html' )

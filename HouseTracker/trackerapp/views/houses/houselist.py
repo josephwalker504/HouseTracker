@@ -13,12 +13,11 @@ def houselist(request):
             }
 
         return render(request, template, context)
-  
-            
+               
     elif request.method == 'POST':
             form_data = request.POST
 
-    newHouse = House(
+            newHouse = House.objects.create(
             address = form_data['address'],
             image = form_data['image'],
             askingPrice = form_data['askingPrice'],
@@ -30,6 +29,6 @@ def houselist(request):
             
     newHouse.save()
 
-    return redirect(reverse('trackerapp: houses/houseslist'))
+    return redirect(reverse('trackerapp:houseslist'))
 
 

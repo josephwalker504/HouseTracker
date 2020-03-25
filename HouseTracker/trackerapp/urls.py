@@ -7,6 +7,7 @@ app_name = "trackerapp"
 urlpatterns = [
     path('', home, name='home'),
     path('accounts/', include('django.contrib.auth.urls')),
+    path('register/', register_user, name="register"),
     path('logout/', logoutUser, name='logout'),
     path('houseform', house_form, name='house_form'),
     path('houses/', houselist, name='houses'),

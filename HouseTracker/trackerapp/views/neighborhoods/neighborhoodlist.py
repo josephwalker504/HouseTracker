@@ -19,8 +19,8 @@ def neighborhood_list(request):
     elif request.method == 'POST':
         form_data = request.POST
         new_neighborhood = Neighborhood(
-             name = form_data['name'],
-              user_id = request.user.id
+            name = form_data['name'],
+            user_id = request.user.id
         )
         new_neighborhood.save()
         return redirect(reverse('trackerapp:neighborhood_list'))

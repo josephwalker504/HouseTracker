@@ -6,7 +6,8 @@ from ..connection import Connection
 
 def houselist(request):
     if request.method == 'GET':
-        allHouses = House.objects.all()
+        current_neighborhood = Neighborhood.objects.filter(user_id = request.user.id)
+        allHouses = House.objects.filter(userId_id = request.user.id )
         template = 'houses/houselist.html'
         context = {
                 'allHouses': allHouses
@@ -17,6 +18,7 @@ def houselist(request):
     elif request.method == 'POST':
             form_data = request.POST
             newHouse = House.objects.create(
+                userId_id = request.user.id,
                 address = form_data['address'],
                 # image = form_data['image'],
                 askingPrice = form_data['askingPrice'],

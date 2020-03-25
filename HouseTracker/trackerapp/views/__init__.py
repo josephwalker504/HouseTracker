@@ -1,5 +1,6 @@
 from .home import home
 from .auth.logout import logoutUser
+from .auth.register import register_user
 from .houses.houselist import houselist
 from .houses.houseform import house_form, house_edit_form
 from .houses.housedetails import house_detail

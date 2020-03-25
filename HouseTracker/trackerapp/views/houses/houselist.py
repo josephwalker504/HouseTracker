@@ -22,8 +22,7 @@ def houselist(request):
                 askingPrice = form_data['askingPrice'],
                 sellingPrice = form_data['sellingPrice'],
                 notes = form_data['notes'],
-                # neighborhood_id = form_data['name'],
-                # user_id = request.user.id
+    
             )
             
     newHouse.save()

@@ -10,7 +10,7 @@ from trackerapp.models.neighborhood import Neighborhood
 
 def neighborhood_list(request):
     if request.method == 'GET':
-        neighborhoods = Neighborhood.objects.all()
+        neighborhoods = Neighborhood.objects.filter(user_id = request.user.id)
         template = 'neighborhoods/list.html'
         context = {
             'neighborhoods': neighborhoods

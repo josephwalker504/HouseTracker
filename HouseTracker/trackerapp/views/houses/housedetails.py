@@ -36,8 +36,6 @@ def house_detail(request, house_id):
             houseToUpdate.askingPrice = form_data['askingPrice']
             houseToUpdate.sellingPrice = form_data['sellingPrice']
             houseToUpdate.notes = form_data['notes']
-            # houseToUpdate.investorId_id = form_data['investorId_id']
-            # houseToUpdate.userId_id = form_data['userId_id']
 
 
             houseToUpdate.save()

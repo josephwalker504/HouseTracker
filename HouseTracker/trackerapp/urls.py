@@ -15,5 +15,5 @@ urlpatterns = [
     path('neighborhoodform', neighborhood_form, name='neighborhood_form'),
     path('neighborhoods/', neighborhood_list, name='neighborhood_list'),
     path('neighborhood/<int:neighborhood_id>/', neighborhood_detail, name='neighborhood_detail'),
-    path('neighborhood/<int:neighborhood_id>/', neighborhood_edit_form, name='neighborhood_edit_form'),
+    path('neighborhood/<int:neighborhood_id>/form', neighborhood_edit_form, name='neighborhood_edit_form'),
 ]

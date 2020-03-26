@@ -32,7 +32,7 @@ def house_detail(request, house_id):
             houseToUpdate = House.objects.get(pk=house_id)
         # Reassign a property's value
             houseToUpdate.address = form_data['address']
-            # houseToUpdate.image = form_data['image']
+            houseToUpdate.image = form_data['image']
             houseToUpdate.askingPrice = form_data['askingPrice']
             houseToUpdate.sellingPrice = form_data['sellingPrice']
             houseToUpdate.notes = form_data['notes']

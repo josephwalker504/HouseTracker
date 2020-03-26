@@ -5,31 +5,41 @@ from trackerapp.models import House
 from trackerapp.models import Neighborhood
 from trackerapp.models import model_factory
 from ..connection import Connection
-from .housedetails import getHouse
 
 
 
-def get_neighborhoods():
-    with sqlite3.connect(Connection.db_path) as conn:
-        conn.row_factory = model_factory(Neighborhood)
-        db_cursor = conn.cursor()
 
-        db_cursor.execute("""
-        select
-            n.id,
-            n.name
-        from trackerapp_neighborhood n 
-        """)
+def get_neighborhood():
 
-        return db_cursor.fetchall()
+    # with sqlite3.connect(Connection.db_path) as conn:
+    #     conn.row_factory = model_factory(Neighborhood)
+    #     db_cursor = conn.cursor()
+
+    #     db_cursor.execute("""
+    #     select
+    #         n.id,
+    #         n.name
+    #     from trackerapp_neighborhood n 
+    #     """)
+
+    #     return db_cursor.fetchall()
+    all_neighborhood = Neighborhood.objects.all()
+
+    return all_neighborhood
+
+def get_house(house_id):
+    all_houses = House.objects.get(pk=house_id)
+    return all_houses
 
 
-def house_form(request):
+
+def house_form(request,):
     if request.method == 'GET':
-        neighborhoods = get_neighborhoods()
+        # house = get_house()
+        neighborhoods = get_neighborhood()
         template = 'houses/houseform.html'
         context = {
-            'allNeighborhoods': neighborhoods
+            'all_neighborhoods': neighborhoods
         }
 
         return render(request, template, context)
@@ -38,12 +48,12 @@ def house_form(request):
 
 def house_edit_form(request, house_id):
     if request.method == 'GET':
-        house = getHouse(house_id)
-        neighborhoods = get_neighborhoods()
+        house = get_house(house_id)
+        neighborhoods = get_neighborhood()
         template = 'houses/houseform.html'
         context = {
             'house': house,
-            'all_neighborhood': neighborhoods
+            'all_neighborhoods': neighborhoods
         }
         return render(request, template, context)
         

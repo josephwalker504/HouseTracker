@@ -1,12 +1,13 @@
 import sqlite3
 from django.shortcuts import render, redirect, reverse
-from trackerapp.models import House
+from trackerapp.models import House, Neighborhood
 from ..connection import Connection
-
+ 
 
 def houselist(request):
     if request.method == 'GET':
-        allHouses = House.objects.all()
+        current_neighborhood = Neighborhood.objects.filter(user_id = request.user.id)
+        allHouses = House.objects.filter(userId_id = request.user.id )
         template = 'houses/houselist.html'
         context = {
                 'allHouses': allHouses
@@ -16,19 +17,19 @@ def houselist(request):
                
     elif request.method == 'POST':
             form_data = request.POST
-
             newHouse = House.objects.create(
-            address = form_data['address'],
-            image = form_data['image'],
-            askingPrice = form_data['askingPrice'],
-            sellingPrice = form_data['sellingPrice'],
-            notes = form_data['notes'],
-            investorId_id = form_data['investorId_id'],
-            userId_id = form_data['userId_id']
+                userId_id = request.user.id,
+                address = form_data['address'],
+                # image = form_data['image'],
+                askingPrice = form_data['askingPrice'],
+                sellingPrice = form_data['sellingPrice'],
+                notes = form_data['notes'],
+    
             )
             
     newHouse.save()
 
-    return redirect(reverse('trackerapp:houseslist'))
+
+    return redirect(reverse('trackerapp:houses'))
 
 

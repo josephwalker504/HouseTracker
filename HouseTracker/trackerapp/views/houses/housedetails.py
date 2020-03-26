@@ -19,14 +19,14 @@ def house_detail(request, house_id):
         house = getHouse(house_id)
         template_name = 'houses/housedetail.html'
         return render(request, template_name, {'house': house})
-
+ 
     elif request.method == 'POST':
         form_data = request.POST
 
   # Check if this POST is for editing a house
         if (
             "actual_method" in form_data
-            and form_data["actual_method"] == "POST"
+            and form_data["actual_method"] == "PUT"
         ):
          # retrieve it first
             houseToUpdate = House.objects.get(pk=house_id)
@@ -36,11 +36,19 @@ def house_detail(request, house_id):
             houseToUpdate.askingPrice = form_data['askingPrice']
             houseToUpdate.sellingPrice = form_data['sellingPrice']
             houseToUpdate.notes = form_data['notes']
-            # houseToUpdate.investorId_id = form_data['investorId_id']
-            houseToUpdate.userId_id = form_data['userId_id']
 
 
             houseToUpdate.save()
 
             return redirect(reverse('trackerapp:houses'))
 
+
+
+        if (
+            "actual_method" in form_data
+            and form_data["actual_method"] == 'DELETE'
+        ):
+            house = House.objects.get(id=house_id)
+            house.delete()
+            
+            return redirect(reverse('trackerapp:houses'))

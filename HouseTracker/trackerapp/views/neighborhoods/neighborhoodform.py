@@ -10,19 +10,9 @@ from trackerapp.models import Neighborhood
 
 
 
-# def get_neighborhoods():
-#     with sqlite3.connect(Connection.db_path) as conn:
-#         conn.row_factory = model_factory(Neighborhood)
-#         db_cursor = conn.cursor()
+def get_neighborhoods(neighborhood_id):
+    return Neighborhood.objects.get(pk=neighborhood_id)
 
-#         db_cursor.execute("""
-#         select
-#             n.id,
-#             n.name
-#         from trackerapp_neighborhood n 
-#         """)
-
-#         return db_cursor.fetchall()
 
 
 @login_required
@@ -37,7 +27,7 @@ def neighborhood_form(request):
 def neighborhood_edit_form(request, neighborhood_id):
 
     if request.method == 'GET':
-        neighborhood = Neighborhood.objects.get(neighborhood_id)
+        neighborhood = get_neighborhoods(neighborhood_id)
         template = 'neighborhoods/form.html'
         context = {
             'neighborhood': neighborhood,

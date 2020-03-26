@@ -15,11 +15,27 @@ def neighborhood_detail(request, neighborhood_id):
     if request.method == 'GET':
         neighborhood = get_neighborhood(neighborhood_id)
         template = 'neighborhoods/detail.html'
-        return render(request, template, {'neighborhood': neighborhood})
+        context = {
+            'neighborhood': neighborhood,
+        }        
+        return render(request, template, context)
         
 
     elif request.method == 'POST':
         form_data = request.POST
+
+        if (
+            "actual_method" in form_data
+            and form_data["actual_method"] == 'PUT'
+        ):
+
+            neighborhood_to_update = Neighborhood.objects.get(pk=neighborhood_id)
+            
+            neighborhood_to_update.name = form_data['name']
+            # user_id = form_data['user_id']        
+            neighborhood_to_update.save()
+            
+            return redirect(reverse('trackerapp:neighborhood_list'))
 
         if (
             "actual_method" in form_data
@@ -28,16 +44,4 @@ def neighborhood_detail(request, neighborhood_id):
             neighborhood = Neighborhood.objects.get(id=neighborhood_id)
             neighborhood.delete()
             
-            return redirect(reverse('trackerapp:neighborhoods'))
-
-        if (
-            "actual_method" in form_data
-            and form_data["actual_method"] == 'PUT'
-        ):
-
-            neighborhood_to_update = Neighborhood.objects.get(id=neighborhood_id)
-            
-            neighborhood_to_update.name = form_data['name']            
-            neighborhood_to_update.save()
-            
-            return redirect(reverse('trackerapp:neighborhood_list'))
+            return redirect(reverse('trackerapp:neighborhood_list')) 

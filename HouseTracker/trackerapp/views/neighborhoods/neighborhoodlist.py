@@ -10,7 +10,7 @@ from trackerapp.models.neighborhood import Neighborhood
 
 def neighborhood_list(request):
     if request.method == 'GET':
-        neighborhoods = Neighborhood.objects.all()
+        neighborhoods = Neighborhood.objects.filter(user_id = request.user.id)
         template = 'neighborhoods/list.html'
         context = {
             'neighborhoods': neighborhoods
@@ -19,8 +19,8 @@ def neighborhood_list(request):
     elif request.method == 'POST':
         form_data = request.POST
         new_neighborhood = Neighborhood(
-             name = form_data['name'],
-              user_id = request.user.id
+            name = form_data['name'],
+            user_id = request.user.id
         )
         new_neighborhood.save()
         return redirect(reverse('trackerapp:neighborhood_list'))

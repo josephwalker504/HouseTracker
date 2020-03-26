@@ -1,10 +1,6 @@
-{% comment %} {% extends 'shared/base.html' %} {% endcomment %}
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>HouseTracker</title>
-  </head>
+{% extends 'shared/base.html' %}
+{% load static  %}
+{% block content %}
   <body>
     <a href="{% url 'trackerapp:house_form' %}">Add Property</a>
 
@@ -20,3 +16,4 @@
     </ol>
   </body>
 </html>
+{% endblock %}

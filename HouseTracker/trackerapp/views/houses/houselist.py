@@ -20,7 +20,7 @@ def houselist(request):
             newHouse = House.objects.create(
                 userId_id = request.user.id,
                 address = form_data['address'],
-                # image = form_data['image'],
+                image = form_data['image'],
                 askingPrice = form_data['askingPrice'],
                 sellingPrice = form_data['sellingPrice'],
                 notes = form_data['notes'],

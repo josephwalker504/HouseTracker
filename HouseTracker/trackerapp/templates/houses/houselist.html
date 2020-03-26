@@ -9,6 +9,7 @@
     <ol>
     {% for house in allHouses %}
         <li>
+            <img class="img" src="{{house.image}}" alt="trackerapp image">
             <a href="{% url 'trackerapp:house_detail' house.id %}"> {{ house.address }} </a>
     Purchase Price: {{house.askingPrice}} Selling Price {{house.sellingPrice}}
         </li>

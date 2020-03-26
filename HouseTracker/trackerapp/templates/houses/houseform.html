@@ -13,6 +13,10 @@
     {% endif %}
         {% csrf_token %}
         <fieldset>
+            <label for="image">Image Url: {{ house.image }} </label>
+            <input id="image" type="text" name="image" value="{{ house.image }}">
+        </fieldset>
+        <fieldset>
             <label for="address">Address: </label>
             <input id="address" type="text" name="address" value="{{ house.address }}">
         </fieldset>

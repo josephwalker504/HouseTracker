@@ -36,7 +36,7 @@ def get_house(house_id):
 def house_form(request,):
     if request.method == 'GET':
         # house = get_house()
-        neighborhoods = get_neighborhood()
+        neighborhoods = Neighborhood.objects.filter(user_id = request.user.id) 
         template = 'houses/houseform.html'
         context = {
             'all_neighborhoods': neighborhoods
@@ -49,7 +49,7 @@ def house_form(request,):
 def house_edit_form(request, house_id):
     if request.method == 'GET':
         house = get_house(house_id)
-        neighborhoods = get_neighborhood()
+        neighborhoods = Neighborhood.objects.filter(user_id = request.user.id)
         template = 'houses/houseform.html'
         context = {
             'house': house,
